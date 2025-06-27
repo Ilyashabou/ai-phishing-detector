@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Phishing Detector</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      width: 350px;
+      padding: 15px;
+      margin: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+    }
+    h1 {
+      font-size: 18px;
+      color: #2c3e50;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .url {
+      font-size: 14px;
+      word-break: break-all;
+      margin-bottom: 10px;
+      padding: 8px;
+      background-color: #f1f1f1;
+      border-radius: 4px;
+    }
+    .result {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .phishing {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .legitimate {
+      background-color: #2ecc71;
+      color: white;
+    }
+    .confidence {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+    }
+    .feature-category {
+      background-color: white;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #eee;
+    }
+    .feature-category h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 14px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    .feature-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+      font-size: 13px;
+    }
+    .feature-name {
+      font-weight: 500;
+    }
+    .feature-value {
+      font-weight: bold;
+    }
+    .feature-good {
+      color: #2ecc71;
+    }
+    .feature-bad {
+      color: #e74c3c;
+    }
+    .feature-neutral {
+      color: #3498db;
+    }
+    .settings {
+      margin-top: 15px;
+      text-align: center;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .error {
+      color: #e74c3c;
+      text-align: center;
+      padding: 10px;
+    }
+    .blocked-warning {
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      background-color: #f1f1f1;
+      cursor: pointer;
+    }
+    .tab.active {
+      background-color: #3498db;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Phishing Detector</h1>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="result">Result</div>
+      <div class="tab" data-tab="features">Features</div>
+      <div class="tab" data-tab="settings">Settings</div>
+    </div>
+    
+    <div id="loading" class="loading">Analyzing URL...</div>
+    
+    <div id="error" class="error" style="display: none;"></div>
+    
+    <div id="blocked" class="blocked-warning" style="display: none;">
+      This page has been blocked because it was detected as a phishing site.
+    </div>
+    
+    <div id="result-tab" class="tab-content active">
+      <div id="url" class="url"></div>
+      <div id="result-container" style="display: none;">
+        <div id="result" class="result"></div>
+        <div id="confidence" class="confidence"></div>
+      </div>
+    </div>
+    
+    <div id="features-tab" class="tab-content">
+      <div id="features-container"></div>
+    </div>
+    
+    <div id="settings-tab" class="tab-content">
+      <div class="settings">
+        <p>API Endpoint:</p>
+        <input type="text" id="api-url" value="http://localhost:8000/predict" style="width: 100%; margin-bottom: 10px;">
+        <p>Auto-block phishing sites:</p>
+        <input type="checkbox" id="auto-block"> Enable auto-blocking
+        <p></p>
+        <button id="save-settings">Save Settings</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

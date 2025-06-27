@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phishing Warning</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #e74c3c;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .warning-container {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 40px;
+      max-width: 600px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .warning-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .back-button {
+      background-color: white;
+      color: #333;
+    }
+    .back-button:hover {
+      background-color: #eee;
+    }
+    .proceed-button {
+      background-color: #333;
+      color: white;
+    }
+    .proceed-button:hover {
+      background-color: #555;
+    }
+    .url-display {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 5px;
+      margin: 20px 0;
+      word-break: break-all;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="warning-container">
+    <div class="warning-icon">⚠️</div>
+    <h1>Phishing Warning</h1>
+    <p>This website has been detected as a potential phishing site by our AI system. Proceeding could put your personal information at risk.</p>
+    
+    <div class="url-display" id="detected-url"></div>
+    
+    <p>What would you like to do?</p>
+    
+    <div class="buttons">
+      <button class="back-button" id="go-back">Go Back (Safe)</button>
+      <button class="proceed-button" id="proceed-anyway">Proceed Anyway (Risky)</button>
+    </div>
+  </div>
+
+  <!-- Replace inline script with external script reference -->
+  <script src="blocked.js"></script>
+</body>
+</html>
